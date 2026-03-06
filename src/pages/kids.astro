@@ -1,0 +1,364 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const factoids = [
+  {
+    emoji: "🏛️",
+    title: "The Colosseum Had Elevators!",
+    fact: "The ancient Romans built 80 wooden elevators inside the Colosseum to lift wild animals and gladiators up through trapdoors right onto the arena floor. Imagine riding an elevator next to a lion!"
+  },
+  {
+    emoji: "🤿",
+    title: "Cleopatra Was NOT Egyptian",
+    fact: "Cleopatra, the famous Queen of Egypt, was actually Greek! Her family came from Greece and ruled Egypt for nearly 300 years. She was the FIRST ruler in her family who could even speak Egyptian."
+  },
+  {
+    emoji: "🏗️",
+    title: "The Great Pyramid Took 20 Years",
+    fact: "About 20,000 workers spent 20 years building the Great Pyramid of Giza. They moved 2.3 million stone blocks, some weighing as much as a school bus! Scientists still aren't 100% sure exactly how they did it."
+  },
+  {
+    emoji: "⚔️",
+    title: "Knights Were Basically Human Tanks",
+    fact: "A full suit of medieval armor weighed up to 50 pounds — that's like wearing 50 boxes of cereal all at once! Knights trained their whole lives just to be able to fight while wearing it."
+  },
+  {
+    emoji: "🐉",
+    title: "The Great Wall Is NOT Visible from Space",
+    fact: "You've probably heard you can see the Great Wall of China from space — but it's actually a myth! It's about as wide as a highway, which is way too thin to see from that far away. Even astronauts have said so."
+  },
+  {
+    emoji: "🦕",
+    title: "Rome Wasn't Built in a Day — It Took 1,000 Years",
+    fact: "The Roman Empire took over 1,000 years to build up and another 1,000 years to slowly fall apart. At its biggest, it was home to over 70 million people — about the same as the whole United States today."
+  },
+  {
+    emoji: "🎭",
+    title: "Ancient Greeks Invented the Theater",
+    fact: "The ancient Greeks invented plays and built huge open-air theaters carved into hillsides. The theaters were so well-designed that even people sitting in the very back row could hear the actors without any microphone!"
+  },
+  {
+    emoji: "🌊",
+    title: "Vikings Had Great Hygiene",
+    fact: "Despite their fierce reputation, Vikings actually bathed once a week (much more than most Europeans at the time!), combed their hair, and carried grooming kits. Archaeologists have found lots of Viking combs and tweezers."
+  },
+  {
+    emoji: "🏯",
+    title: "The Aztecs Played a Ball Game — With High Stakes",
+    fact: "The Aztecs played a game called Ullamaliztli where players had to keep a rubber ball in the air using only their hips and elbows. The losing team sometimes had to give up their belongings — or even more!"
+  },
+  {
+    emoji: "📜",
+    title: "The First Written Language Was Basically a Shopping List",
+    fact: "The very first writing ever discovered (from ancient Mesopotamia, around 3,000 BC) isn't poetry or stories — it's just boring lists of goods like grain, cloth, and livestock. Basically, the oldest writing in all of human history is ancient record-keeping tablets. Someone had a very important job counting sheep!"
+  },
+  {
+    emoji: "🎉",
+    title: "The Declaration of Independence Was Signed by 56 People — Some Were Teenagers' Age",
+    fact: "When the Founding Fathers signed the Declaration of Independence in 1776, the youngest signer was Edward Rutledge — he was only 26! The document declared that the American colonies were free from British rule forever. It took incredible bravery to sign it, because if the Revolution failed, they could have been executed for treason."
+  },
+  {
+    emoji: "🌊",
+    title: "The Boston Tea Party Wasn't Actually About Tea",
+    fact: "In 1773, American colonists were furious that Britain was taxing their tea without giving them any say in the matter. So one night, a group dressed up as Mohawk Native Americans, snuck onto three British ships in Boston Harbor, and dumped 342 chests of tea into the water — worth about $1.7 million in today's money! It was one of the sparks that ignited the American Revolution."
+  },
+];
+
+const activities = [
+  {
+    title: "Color an Egyptian Pyramid",
+    description: "Print this coloring sheet and bring ancient Egypt to life with your favorite colors!",
+    href: "/kids/coloring-pyramid",
+    icon: "🏛️",
+    color: "#C4713A",
+  },
+  {
+    title: "Color a Medieval Castle",
+    description: "Grab your crayons and color this mighty castle — don't forget the knights and dragons!",
+    href: "/kids/coloring-castle",
+    icon: "🏰",
+    color: "#2D5A27",
+  },
+  {
+    title: "History Word Scramble",
+    description: "Can you unscramble these history words? Print it out and race your friends!",
+    href: "/kids/word-scramble",
+    icon: "🔤",
+    color: "#7A4F8A",
+  },
+  {
+    title: "History Word Search",
+    description: "Hunt for 12 hidden history words — across, down, and diagonal. Can you find them all?",
+    href: "/kids/word-search",
+    icon: "🔍",
+    color: "#1A6B7A",
+  },
+];
+---
+
+<Layout
+  title="Kids"
+  description="Fun history facts and printable activities for kids — coloring sheets, word scrambles, and wild historical facts!"
+>
+  <!-- Page Header -->
+  <div class="kids-header">
+    <div class="container">
+      <p class="kids-eyebrow">History is awesome.</p>
+      <h1 class="kids-title">History for Kids!</h1>
+      <p class="kids-subtitle">Did you know ancient Romans had vending machines, or that Vikings loved to comb their hair? History is way weirder and cooler than you think.</p>
+    </div>
+  </div>
+
+  <!-- Printable Activities -->
+  <section class="section activities-section" aria-labelledby="activities-heading">
+    <div class="container">
+      <h2 class="section-title" id="activities-heading">Printable <span>Activities</span></h2>
+      <p class="activities-intro">Print these out and get creative! All you need is a printer and some crayons or a pencil.</p>
+      <div class="activities-grid">
+        {activities.map(a => (
+          <a href={a.href} class="activity-card" style={`--card-color: ${a.color}`}>
+            <span class="activity-icon">{a.icon}</span>
+            <div>
+              <h3 class="activity-title">{a.title}</h3>
+              <p class="activity-desc">{a.description}</p>
+            </div>
+            <span class="activity-arrow">
+              Print &amp; Download &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Factoids -->
+  <section class="section factoids-section" aria-labelledby="factoids-heading">
+    <div class="container">
+      <h2 class="section-title" id="factoids-heading">Did You <span>Know?</span></h2>
+      <p class="factoids-intro">10 wild history facts that will blow your mind (and impress your teacher).</p>
+      <div class="factoids-grid">
+        {factoids.map((f, i) => (
+          <div class="factoid-card">
+            <div class="factoid-top">
+              <span class="factoid-emoji">{f.emoji}</span>
+              <span class="factoid-num">#{i + 1}</span>
+            </div>
+            <h3 class="factoid-title">{f.title}</h3>
+            <p class="factoid-text">{f.fact}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Header */
+  .kids-header {
+    position: relative;
+    text-align: center;
+    padding-block: 4.5rem 3.5rem;
+    overflow: hidden;
+    color: #fff;
+
+    background-color: var(--color-accent);
+    background-image:
+      radial-gradient(ellipse at 10% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 15%, rgba(45, 90, 39, 0.25) 0%, transparent 45%),
+      radial-gradient(ellipse at 60% 110%, rgba(255, 200, 150, 0.15) 0%, transparent 40%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: auto, auto, auto, 24px 24px;
+
+    border-bottom: 3px solid #A85C2A;
+  }
+
+  .kids-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+      #2D5A27 0%,
+      #F5C996 35%,
+      #fff 55%,
+      #F5C996 75%,
+      #2D5A27 100%
+    );
+  }
+
+  .kids-header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    height: 520px;
+    background-image: repeating-conic-gradient(
+      rgba(255, 255, 255, 0.05) 0deg 10deg,
+      transparent 10deg 20deg
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .kids-header .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .kids-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.75rem;
+  }
+
+  .kids-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .kids-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.88);
+    max-width: 58ch;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* Activities */
+  .activities-intro,
+  .factoids-intro {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .activities-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .activity-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
+    border-left: 5px solid var(--card-color, var(--color-accent));
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: var(--shadow-card);
+  }
+
+  .activity-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateX(4px);
+  }
+
+  .activity-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .activity-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .activity-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .activity-arrow {
+    margin-left: auto;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--card-color, var(--color-accent));
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Factoids */
+  .factoids-section {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .factoids-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+
+  .factoid-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .factoid-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .factoid-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .factoid-emoji {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .factoid-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .factoid-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1.3;
+  }
+
+  .factoid-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 600px) {
+    .activity-arrow { display: none; }
+  }
+</style>

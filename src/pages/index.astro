@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { blogPosts } from '../data/blogPosts';
+import { articles } from '../data/articles';
+
+const featuredPosts = blogPosts.slice(0, 3);
+const latestArticles = articles.slice(0, 3);
+---
+
+<Layout
+  title="Home"
+  description="Footnotes and Footsteps — travel stories from around the world, written slowly and lived fully."
+>
+  <Hero />
+
+  <!-- Featured Blog Posts -->
+  <section class="section" aria-labelledby="featured-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" id="featured-heading">
+          Recent <span>stories</span>
+        </h2>
+        <a href="/blog" class="view-all">View all posts &rarr;</a>
+      </div>
+      <div class="card-grid">
+        {featuredPosts.map(post => <BlogCard post={post} />)}
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Latest Curated Articles -->
+  <section class="section" aria-labelledby="articles-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" id="articles-heading">
+          Worth <span>reading</span>
+        </h2>
+        <a href="/articles" class="view-all">See all articles &rarr;</a>
+      </div>
+      <div class="card-grid-2">
+        {latestArticles.map(article => <ArticleCard article={article} />)}
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</Layout>

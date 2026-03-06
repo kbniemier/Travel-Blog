@@ -1,0 +1,207 @@
+---
+import PrintLayout from '../../layouts/PrintLayout.astro';
+
+const words = [
+  { scrambled: "YPARMID",   answer: "PYRAMID",    clue: "Ancient stone structure built in Egypt" },
+  { scrambled: "HRAAOPP",   answer: "PHARAOH",    clue: "The ruler of ancient Egypt" },
+  { scrambled: "LACSET",    answer: "CASTLE",     clue: "A stone fortress where kings and queens lived" },
+  { scrambled: "KGIVNI",    answer: "VIKING",     clue: "Norse explorer and warrior from Scandinavia" },
+  { scrambled: "REMOPRRE",  answer: "EMPEROR",    clue: "The most powerful ruler of an empire" },
+  { scrambled: "TANINCE",   answer: "ANCIENT",    clue: "Something very, very old" },
+  { scrambled: "TNGKIH",    answer: "KNIGHT",     clue: "An armored warrior who served a king" },
+  { scrambled: "UAMAIRS",   answer: "SAMURAI",    clue: "A skilled Japanese warrior" },
+  { scrambled: "AMSRUELO",  answer: "COLOSSEUM",  clue: "A famous ancient Roman arena in Italy" },
+  { scrambled: "REGALOTID", answer: "GLADIATOR",  clue: "A Roman fighter who battled in an arena" },
+  { scrambled: "RIPMEE",    answer: "EMPIRE",     clue: "A large group of countries ruled by one leader" },
+  { scrambled: "ITROHSY",   answer: "HISTORY",    clue: "The study of things that happened in the past" },
+];
+---
+
+<PrintLayout title="History Word Scramble">
+  <style>
+    .sheet-header { text-align: center; margin-bottom: 1.5rem; border-bottom: 3px dashed #ccc; padding-bottom: 1rem; }
+    .sheet-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; }
+    .sheet-subtitle { font-size: 0.95rem; color: #555; margin-top: 0.3rem; }
+
+    .instructions {
+      background: #FFF8EE;
+      border: 2px solid #C4713A;
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+    }
+    .instructions strong { color: #C4713A; }
+
+    .scramble-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+    }
+
+    .scramble-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      page-break-inside: avoid;
+    }
+
+    .item-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #C4713A;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .scrambled-word {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #1a1a1a;
+    }
+
+    .clue {
+      font-size: 0.78rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .answer-line {
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    .answer-boxes {
+      display: flex;
+      gap: 3px;
+    }
+
+    .letter-box {
+      width: 20px;
+      height: 22px;
+      border: 1.5px solid #aaa;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .bonus-section {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 2px dashed #2D5A27;
+      border-radius: 8px;
+      background: #F5FFF4;
+    }
+
+    .bonus-section h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2D5A27;
+      margin-bottom: 0.5rem;
+    }
+
+    .bonus-section p {
+      font-size: 0.85rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .answer-key {
+      margin-top: 1.5rem;
+      border-top: 2px dashed #ccc;
+      padding-top: 1rem;
+    }
+
+    .answer-key h3 {
+      font-family: 'Lora', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .answer-key-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.3rem 1rem;
+      font-size: 0.72rem;
+      color: #999;
+    }
+
+    .answer-key-item strong { color: #C4713A; }
+
+    .name-line { margin-top: 1.5rem; display: flex; gap: 3rem; font-size: 0.85rem; color: #555; }
+    .name-line span { border-bottom: 1px solid #aaa; display: inline-block; width: 160px; margin-left: 0.5rem; }
+
+    @media print {
+      .scramble-item { background: #fff; }
+      .bonus-section { background: #fff; }
+    }
+  </style>
+
+  <div class="sheet-header">
+    <div class="sheet-title">History Word Scramble!</div>
+    <div class="sheet-subtitle">Unscramble these history words — can you get all 12?</div>
+  </div>
+
+  <div class="instructions">
+    <strong>How to play:</strong> Each word below has been scrambled up. Read the clue, then unscramble the letters and write the correct word in the boxes. The number of boxes tells you how many letters the word has. Good luck!
+  </div>
+
+  <div class="scramble-grid">
+    {words.map((w, i) => (
+      <div class="scramble-item">
+        <span class="item-number">Word {i + 1}</span>
+        <span class="scrambled-word">{w.scrambled}</span>
+        <span class="clue">Clue: {w.clue}</span>
+        <div class="answer-line">
+          <span>Answer:</span>
+          <div class="answer-boxes">
+            {Array.from({ length: w.answer.length }).map(() => (
+              <span class="letter-box"></span>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="bonus-section">
+    <h3>Bonus Challenge!</h3>
+    <p>
+      Can you use any of the words above in a sentence about something historical you've learned?
+      Write your sentence here:
+    </p>
+    <div style="border-bottom: 1px solid #aaa; margin-top: 0.75rem; height: 1.5rem;"></div>
+    <div style="border-bottom: 1px solid #aaa; margin-top: 0.75rem; height: 1.5rem;"></div>
+  </div>
+
+  <div class="name-line">
+    <div>Name: <span></span></div>
+    <div>Score: <span style="width:80px"></span> / 12</div>
+  </div>
+
+  <!-- Answer Key (at bottom, upside-down feel via small text) -->
+  <div class="answer-key">
+    <h3>Answer Key (for grown-ups)</h3>
+    <div class="answer-key-grid">
+      {words.map((w, i) => (
+        <div class="answer-key-item">
+          <strong>{i + 1}.</strong> {w.answer}
+        </div>
+      ))}
+    </div>
+  </div>
+</PrintLayout>

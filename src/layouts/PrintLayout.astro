@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  backHref?: string;
+  backLabel?: string;
+}
+
+const { title, backHref = '/kids', backLabel = 'Back to Kids' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Footnotes & Footsteps</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Source Sans 3', system-ui, sans-serif;
+        background: #fff;
+        color: #1a1a1a;
+      }
+
+      /* Screen-only controls bar */
+      .print-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem 2rem;
+        background: #F5EDD7;
+        border-bottom: 2px solid #D4C4A0;
+        flex-wrap: wrap;
+      }
+
+      .back-link {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #C4713A;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
+      }
+
+      .back-link:hover { text-decoration: underline; }
+
+      .print-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        background: #C4713A;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.55em 1.3em;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .print-btn:hover { background: #A85C2A; }
+
+      .print-hint {
+        font-size: 0.8rem;
+        color: #6B4A32;
+      }
+
+      /* Printable content area */
+      .print-page {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      /* Hide controls when printing */
+      @media print {
+        .print-controls { display: none !important; }
+        .print-page { margin: 0; padding: 1cm; max-width: none; }
+        body { background: #fff; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="print-controls">
+      <a href={backHref} class="back-link">&#8592; {backLabel}</a>
+      <span class="print-hint">Tip: Use "Print to PDF" to save as a file!</span>
+      <button class="print-btn" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        Print / Download PDF
+      </button>
+    </div>
+    <div class="print-page">
+      <slot />
+    </div>
+  </body>
+</html>

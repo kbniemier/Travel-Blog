@@ -1,0 +1,130 @@
+---
+import type { Article } from '../data/articles';
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+---
+
+<article class="article-card">
+  <div class="article-card-inner">
+    <div class="article-header">
+      <span class="publication">{article.publication}</span>
+      <span class="tag">{article.tag}</span>
+    </div>
+    <h3 class="article-title">{article.title}</h3>
+    <p class="article-description">{article.description}</p>
+    <a
+      href={article.url}
+      class="article-link"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Read "${article.title}" on ${article.publication} (opens in new tab)`}
+    >
+      Read article
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="7" y1="17" x2="17" y2="7"/>
+        <polyline points="7 7 17 7 17 17"/>
+      </svg>
+    </a>
+  </div>
+  <div class="article-accent" aria-hidden="true"></div>
+</article>
+
+<style>
+  .article-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: box-shadow 0.25s, transform 0.25s;
+    box-shadow: var(--shadow-card);
+  }
+
+  .article-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-3px);
+  }
+
+  .article-card-inner {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+
+  /* Accent bar on left edge */
+  .article-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: 4px 0 0 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s, width 0.2s;
+  }
+
+  .article-card:hover .article-accent {
+    opacity: 1;
+    width: 5px;
+  }
+
+  .article-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .publication {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .article-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  .article-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .article-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: gap 0.2s, color 0.2s;
+  }
+
+  .article-link:hover {
+    gap: 0.65em;
+    color: var(--color-accent-hover);
+  }
+</style>

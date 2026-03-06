@@ -1,0 +1,40 @@
+---
+import PrintLayout from '../../layouts/PrintLayout.astro';
+---
+
+<PrintLayout title="Color a Medieval Castle">
+  <style>
+    .sheet-header { text-align: center; margin-bottom: 1.25rem; border-bottom: 3px dashed #ccc; padding-bottom: 1rem; }
+    .sheet-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: #1a1a1a; }
+    .sheet-subtitle { font-size: 0.95rem; color: #555; margin-top: 0.3rem; }
+    .coloring-area { display: flex; justify-content: center; margin: 1rem 0; }
+    .coloring-area img { max-width: 100%; height: auto; display: block; }
+    .fun-fact { background: #F0F8EE; border: 2px dashed #2D5A27; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+    .fun-fact strong { color: #2D5A27; }
+    .fun-fact p { font-size: 0.9rem; color: #333; line-height: 1.6; margin-top: 0.25rem; }
+    .name-line { margin-top: 2rem; display: flex; gap: 3rem; font-size: 0.85rem; color: #555; }
+    .name-line span { border-bottom: 1px solid #aaa; display: inline-block; width: 180px; margin-left: 0.5rem; }
+  </style>
+
+  <div class="sheet-header">
+    <div class="sheet-title">Medieval Castle</div>
+    <div class="sheet-subtitle">Color me in! Use grays, browns, and greens to bring this kingdom to life!</div>
+  </div>
+
+  <div class="coloring-area">
+    <img
+      src="/images/Medieval-Castle-Coloring-Pages-Graphics-59129058-4-580x387.png"
+      alt="Medieval castle coloring page"
+    />
+  </div>
+
+  <div class="fun-fact">
+    <strong>Fun Fact!</strong>
+    <p>Medieval castles weren't just for fighting — they were like mini-cities! Inside the walls there were kitchens, chapels, gardens, and stables for hundreds of people. The tallest tower (called the "keep") was the last place people retreated to if the castle was attacked. The portcullis — the iron gate with spikes — could be dropped in seconds to stop invaders!</p>
+  </div>
+
+  <div class="name-line">
+    <div>Name: <span></span></div>
+    <div>Date: <span></span></div>
+  </div>
+</PrintLayout>

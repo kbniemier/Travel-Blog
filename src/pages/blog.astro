@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { blogPosts } from '../data/blogPosts';
+---
+
+<Layout
+  title="Blog"
+  description="Travel stories from around the world — Morocco, Italy, Vietnam, Norway, Mexico, India and beyond."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>The Blog</h1>
+      <p>
+        Six posts and counting. More being written somewhere with slow Wi-Fi.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="blog-heading">
+    <div class="container">
+      <!-- Destination filter bar (decorative — no JS filtering needed) -->
+      <div class="filter-bar" aria-label="Browse by region" role="list">
+        {['All', 'Africa', 'Europe', 'Southeast Asia', 'Scandinavia', 'Latin America', 'South Asia'].map(tag => (
+          <span class:list={['filter-chip', { active: tag === 'All' }]} role="listitem">{tag}</span>
+        ))}
+      </div>
+
+      <h2 class="sr-only" id="blog-heading">All posts</h2>
+      <div class="card-grid posts-grid">
+        {blogPosts.map(post => <BlogCard post={post} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Filter bar */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-chip {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    cursor: default;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .filter-chip.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  /* Visually hidden */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  }
+</style>

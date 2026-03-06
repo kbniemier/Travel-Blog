@@ -1,0 +1,40 @@
+---
+import PrintLayout from '../../layouts/PrintLayout.astro';
+---
+
+<PrintLayout title="Color an Egyptian Pyramid">
+  <style>
+    .sheet-header { text-align: center; margin-bottom: 1.25rem; border-bottom: 3px dashed #ccc; padding-bottom: 1rem; }
+    .sheet-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: #1a1a1a; }
+    .sheet-subtitle { font-size: 0.95rem; color: #555; margin-top: 0.3rem; }
+    .coloring-area { display: flex; justify-content: center; margin: 1rem 0; }
+    .coloring-area img { max-width: 100%; height: auto; display: block; }
+    .fun-fact { background: #FFF8EE; border: 2px dashed #C4713A; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+    .fun-fact strong { color: #C4713A; }
+    .fun-fact p { font-size: 0.9rem; color: #333; line-height: 1.6; margin-top: 0.25rem; }
+    .name-line { margin-top: 2rem; display: flex; gap: 3rem; font-size: 0.85rem; color: #555; }
+    .name-line span { border-bottom: 1px solid #aaa; display: inline-block; width: 180px; margin-left: 0.5rem; }
+  </style>
+
+  <div class="sheet-header">
+    <div class="sheet-title">The Great Pyramid of Giza</div>
+    <div class="sheet-subtitle">Color with golden yellows, sandy tans, and a bright blue sky!</div>
+  </div>
+
+  <div class="coloring-area">
+    <img
+      src="/images/1000_F_901712740_9ThFAatUCXWlhDHJMjzHU81EzAnsmUEV.jpg"
+      alt="Egyptian pyramid coloring page"
+    />
+  </div>
+
+  <div class="fun-fact">
+    <strong>Fun Fact!</strong>
+    <p>The Great Pyramid of Giza was built around 2560 BC and stood as the tallest man-made structure in the world for over 3,800 years! It's made of about 2.3 million stone blocks, each weighing as much as a small car. Scientists still aren't 100% sure exactly how the ancient Egyptians built it!</p>
+  </div>
+
+  <div class="name-line">
+    <div>Name: <span></span></div>
+    <div>Date: <span></span></div>
+  </div>
+</PrintLayout>

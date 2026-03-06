@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { articles } from '../data/articles';
+---
+
+<Layout
+  title="Articles"
+  description="A curated collection of the best travel writing from around the web — long reads, essays, and dispatches worth your time."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Cool & Relevant Articles</h1>
+      <p>
+        The best travel writing I've stumbled across — long reads, essays, and
+        dispatches from writers far better than me. All links open in a new tab.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="articles-heading">
+    <div class="container">
+      <h2 class="sr-only" id="articles-heading">All curated articles</h2>
+      <div class="articles-grid">
+        {articles.map(article => <ArticleCard article={article} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

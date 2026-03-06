@@ -1,0 +1,227 @@
+---
+import PrintLayout from '../../layouts/PrintLayout.astro';
+
+// 15x15 grid with 12 hidden words
+// Words: ROME, GREECE, SPHINX, SCROLL, SHIELD, BATTLE, THRONE, TREATY, COMPASS, ATLAS, VOYAGE, ORACLE
+// Placed manually; remaining cells filled with random letters
+
+const grid: string[][] = [
+  ['S','P','H','I','N','X','Q','W','R','T','Y','U','P','Z','A'],
+  ['C','R','O','M','E','B','A','T','T','L','E','F','G','H','J'],
+  ['R','G','E','K','L','M','N','P','R','Q','S','T','V','W','X'],
+  ['O','R','E','E','C','E','Y','Z','A','B','C','D','E','F','G'],
+  ['L','H','I','J','K','L','M','N','O','P','V','O','Y','A','G'],
+  ['L','T','H','R','O','N','E','Q','R','S','T','U','V','W','X'],
+  ['Y','Z','A','B','C','D','E','F','G','H','A','T','L','A','S'],
+  ['Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E'],
+  ['S','H','I','E','L','D','F','G','H','I','J','K','L','M','N'],
+  ['O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C'],
+  ['C','O','M','P','A','S','S','D','E','F','G','H','I','J','K'],
+  ['L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+  ['T','R','E','A','T','Y','A','B','C','D','E','F','G','H','I'],
+  ['J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'],
+  ['O','R','A','C','L','E','Y','Z','A','B','C','D','E','F','G'],
+];
+
+const wordList = [
+  { word: "ROME",    hint: "Famous ancient city and empire in Italy" },
+  { word: "GREECE",  hint: "Ancient civilization that invented democracy" },
+  { word: "SPHINX",  hint: "Giant stone statue with a lion's body in Egypt" },
+  { word: "SCROLL",  hint: "Rolled-up document used before books existed" },
+  { word: "SHIELD",  hint: "A warrior's protection in battle" },
+  { word: "BATTLE",  hint: "A fight between two armies" },
+  { word: "THRONE",  hint: "The royal chair where a king or queen sits" },
+  { word: "TREATY",  hint: "An agreement to end a war or conflict" },
+  { word: "COMPASS", hint: "Navigation tool that points north" },
+  { word: "ATLAS",   hint: "A book of maps, named after a Greek titan" },
+  { word: "VOYAGE",  hint: "A long journey, especially by sea" },
+  { word: "ORACLE",  hint: "An ancient Greek prophet who told the future" },
+];
+---
+
+<PrintLayout title="History Word Search">
+  <style>
+    .sheet-header { text-align: center; margin-bottom: 1.25rem; border-bottom: 3px dashed #ccc; padding-bottom: 1rem; }
+    .sheet-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; }
+    .sheet-subtitle { font-size: 0.95rem; color: #555; margin-top: 0.3rem; }
+
+    .instructions {
+      background: #FFF8EE;
+      border: 2px solid #C4713A;
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      color: #333;
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+    .instructions strong { color: #C4713A; }
+
+    .search-layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .grid-wrapper {
+      display: inline-block;
+    }
+
+    .letter-grid {
+      border-collapse: collapse;
+      font-family: 'Lora', serif;
+    }
+
+    .letter-grid td {
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      border: 1px solid #ddd;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .word-list-section h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #C4713A;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #e8d5c0;
+      padding-bottom: 0.3rem;
+    }
+
+    .word-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .word-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+    }
+
+    .word-check {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #C4713A;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: inline-block;
+    }
+
+    .word-name {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-size: 0.88rem;
+      min-width: 72px;
+    }
+
+    .word-hint {
+      color: #666;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .bonus-section {
+      margin-top: 1.25rem;
+      padding: 0.9rem 1.1rem;
+      border: 2px dashed #2D5A27;
+      border-radius: 8px;
+      background: #F5FFF4;
+    }
+
+    .bonus-section h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2D5A27;
+      margin-bottom: 0.4rem;
+    }
+
+    .bonus-section p {
+      font-size: 0.85rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .directions-note {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .name-line { margin-top: 1.5rem; display: flex; gap: 3rem; font-size: 0.85rem; color: #555; }
+    .name-line span { border-bottom: 1px solid #aaa; display: inline-block; width: 160px; margin-left: 0.5rem; }
+
+    @media print {
+      .bonus-section { background: #fff; }
+      .letter-grid td { border-color: #ccc; }
+    }
+  </style>
+
+  <div class="sheet-header">
+    <div class="sheet-title">History Word Search!</div>
+    <div class="sheet-subtitle">Find all 12 hidden history words — how fast can you go?</div>
+  </div>
+
+  <div class="instructions">
+    <strong>How to play:</strong> Find and circle each word from the list. Words can go <strong>across (→)</strong>, <strong>down (↓)</strong>, or <strong>diagonally (↘)</strong>. Check off each word as you find it. Good luck, historian!
+  </div>
+
+  <div class="search-layout">
+    <div class="grid-wrapper">
+      <table class="letter-grid">
+        <tbody>
+          {grid.map((row) => (
+            <tr>
+              {row.map((letter) => (
+                <td>{letter}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="directions-note">Words go across →, down ↓, or diagonally ↘</p>
+    </div>
+
+    <div class="word-list-section">
+      <h3>Find These Words:</h3>
+      <ul class="word-list">
+        {wordList.map((w) => (
+          <li class="word-item">
+            <span class="word-check"></span>
+            <span class="word-name">{w.word}</span>
+            <span class="word-hint">{w.hint}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="bonus-section">
+    <h3>Bonus Challenge!</h3>
+    <p>Pick any word from the list and write one sentence about it using a history fact you know. For example: "The ancient Romans built the SCROLL…"</p>
+    <div style="border-bottom: 1px solid #aaa; margin-top: 0.75rem; height: 1.5rem;"></div>
+    <div style="border-bottom: 1px solid #aaa; margin-top: 0.75rem; height: 1.5rem;"></div>
+  </div>
+
+  <div class="name-line">
+    <div>Name: <span></span></div>
+    <div>Score: <span style="width:80px"></span> / 12</div>
+  </div>
+</PrintLayout>

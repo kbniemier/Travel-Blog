@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About Me"
+  description="About the writer behind Footnotes and Footsteps — a traveller, reader, and occasional over-orderer of local food."
+>
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>About Me</h1>
+      <p>Traveller, reader, chronic over-packer.</p>
+    </div>
+  </div>
+
+  <!-- Main bio section -->
+  <section class="section about-section">
+    <div class="container about-grid">
+      <!-- Text -->
+      <div class="about-text">
+        <h2 class="about-name">Hello, I'm <span>Cameron.</span></h2>
+        <p>
+          I started this blog because I kept filling up notebooks on trains and
+          planes and couldn't bear to leave the words behind. "Footnotes and Footsteps"
+          began as a private journal. Somewhere between Montreal and Hanoi, it
+          became something I wanted to share.
+        </p>
+        <p>
+          I travel quickly — often focusing on the beauty, history, AND food in
+          any given place. I have a day job that keeps me busy so I can never
+          stay in one place for too long.
+        </p>
+        <p>
+          My writing is about the texture of travel: the awkward moments, the
+          unexpected kindnesses, the meals that somehow taste like the whole
+          country. I'm not here to give you a checklist. I'm here to tell you
+          what it actually felt like.
+        </p>
+        <p>
+          When I'm not on the road, I'm probably reading or eating. Check out
+          my reading list and favorite meals.
+        </p>
+
+        <div class="about-cta">
+          <a href="/blog" class="btn btn-primary">Read the blog</a>
+          <a href="/articles" class="btn btn-outline">Favorite Reads</a>
+        </div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="about-portrait-wrap">
+        <div class="about-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80"
+            alt="Portrait — Cameron, sophisticated traveller"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Travel stats -->
+  <section class="section stats-section" aria-labelledby="stats-heading">
+    <div class="container">
+      <h2 id="stats-heading" class="stats-heading">By the numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">22</span>
+          <span class="stat-label">Countries visited</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Blog posts published</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Years on the road</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">&infin;</span>
+          <span class="stat-label">Cups of local coffee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Gear / reading -->
+  <section class="section extras-section">
+    <div class="container extras-grid">
+      <div class="extra-block">
+        <h3>What's always in my bag</h3>
+        <ul class="extra-list">
+          <li>A battered Moleskine</li>
+          <li>Numerous pens</li>
+          <li>My next read</li>
+          <li>An iPad</li>
+          <li>A Yeti Water Bottle</li>
+        </ul>
+      </div>
+      <div class="extra-block">
+        <h3>Currently reading</h3>
+        <ul class="extra-list">
+          <li><em>Guns, Germs, and Steel</em> — Jared Diamond (1997)</li>
+          <li><em>Killers of the Flower Moon</em> — David Grann (2017)</li>
+          <li><em>A Rumor of War</em> — Philip Caputo (1977)</li>
+        </ul>
+      </div>
+      <div class="extra-block">
+        <h3>Where I'm dreaming of next</h3>
+        <ul class="extra-list">
+          <li>Yucatan, Mexico</li>
+          <li>San Antonio, Texas</li>
+          <li>Athens, Greece</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* About grid */
+  .about-section {
+    padding-top: 4rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .about-name {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-name span {
+    color: var(--color-accent);
+    font-style: italic;
+  }
+
+  .about-text p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 64ch;
+  }
+
+  .about-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  /* Portrait */
+  .about-portrait-wrap {
+    position: relative;
+  }
+
+  .about-portrait {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    border: 3px solid var(--color-surface-2);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(35%) saturate(0.85) brightness(0.95) contrast(1.08) hue-rotate(-5deg);
+    transition: filter 0.4s ease;
+  }
+
+  /* Warm vignette overlay */
+  .about-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(100, 45, 10, 0.28) 100%);
+    pointer-events: none;
+  }
+
+  .about-portrait:hover img {
+    filter: sepia(20%) saturate(0.9) brightness(0.97) contrast(1.05) hue-rotate(-5deg);
+  }
+
+  .portrait-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.45em 0.9em;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    box-shadow: 0 4px 12px rgba(196, 113, 58, 0.4);
+  }
+
+  /* Stats */
+  .stats-section {
+    text-align: center;
+  }
+
+  .stats-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    margin-bottom: 2.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  /* Extras */
+  .extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .extra-block h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .extra-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .extra-list li {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    padding-left: 1.2em;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .extra-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .extra-list em {
+    font-style: italic;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 800px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .about-portrait-wrap {
+      max-width: 340px;
+    }
+  }
+</style>
