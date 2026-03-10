@@ -6,13 +6,13 @@ import { blogPosts } from '../data/blogPosts';
 
 <Layout
   title="Blog"
-  description="Travel stories from around the world — Morocco, Italy, Vietnam, Norway, Mexico, India and beyond."
+  description="Travel stories from around the world — Italy and beyond."
 >
   <div class="page-header">
     <div class="container">
       <h1>The Blog</h1>
       <p>
-        Six posts and counting. More being written somewhere with slow Wi-Fi.
+        One post and counting. More being written somewhere with slow Wi-Fi.
       </p>
     </div>
   </div>
@@ -21,7 +21,7 @@ import { blogPosts } from '../data/blogPosts';
     <div class="container">
       <!-- Destination filter bar (decorative — no JS filtering needed) -->
       <div class="filter-bar" aria-label="Browse by region" role="list">
-        {['All', 'Africa', 'Europe', 'Southeast Asia', 'Scandinavia', 'Latin America', 'South Asia'].map(tag => (
+        {['All', 'Europe', 'Southeast Asia'].map(tag => (
           <span class:list={['filter-chip', { active: tag === 'All' }]} role="listitem">{tag}</span>
         ))}
       </div>
