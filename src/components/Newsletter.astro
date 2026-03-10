@@ -13,7 +13,7 @@
       <h2 id="newsletter-heading" class="newsletter-heading">Get the next postcard.</h2>
       <p>New stories, recommended reads, and travel notes — delivered whenever I remember to send them.</p>
     </div>
-    <form class="newsletter-form" onsubmit="return false;" novalidate>
+    <form class="newsletter-form" id="newsletter-form">
       <label for="email-input" class="sr-only">Your email address</label>
       <input
         id="email-input"
@@ -26,7 +26,21 @@
       />
       <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
-    <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    <p class="newsletter-note" id="newsletter-note">No spam. Unsubscribe anytime.</p>
+
+<script>
+  const form = document.getElementById("newsletter-form") as HTMLFormElement;
+  const note = document.getElementById("newsletter-note")!;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const body = new FormData(form);
+    const res = await fetch("/api/subscribe", { method: "POST", body });
+    const data = await res.json();
+    note.textContent = data.message ?? data.error;
+    if (res.ok) form.reset();
+  });
+</script>
   </div>
 </section>
 
