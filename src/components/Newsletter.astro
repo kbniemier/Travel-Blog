@@ -37,14 +37,41 @@
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const email = (new FormData(form).get("email") as string);
     button.disabled = true;
     button.textContent = "Sending...";
+
+    const callbackName = "mc_" + Date.now();
+
     try {
-      const body = new FormData(form);
-      const res = await fetch("/api/subscribe", { method: "POST", body });
-      const data = await res.json();
-      note.textContent = data.message ?? data.error ?? "Something went wrong.";
-      if (res.ok) form.reset();
+      const result = await new Promise<{result: string; msg: string}>((resolve, reject) => {
+        const timeout = setTimeout(() => { cleanup(); reject(new Error("Timeout")); }, 10000);
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete (window as any)[callbackName];
+          script.remove();
+        }
+
+        (window as any)[callbackName] = (data: any) => { cleanup(); resolve(data); };
+
+        const params = new URLSearchParams({
+          u: "29c888b46264944c8ffe75161",
+          id: "840f69c1a6",
+          EMAIL: email,
+          c: callbackName,
+        });
+
+        const script = document.createElement("script");
+        script.src = `https://us7.list-manage.com/subscribe/post-json?${params}`;
+        script.onerror = () => { cleanup(); reject(new Error("Network error")); };
+        document.head.appendChild(script);
+      });
+
+      note.textContent = result.result === "success"
+        ? "Subscribed!"
+        : result.msg.replace(/^\d+ - /, "");
+      if (result.result === "success") form.reset();
     } catch {
       note.textContent = "Something went wrong. Please try again.";
     } finally {
