@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
