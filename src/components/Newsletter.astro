@@ -27,22 +27,32 @@
       <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
     <p class="newsletter-note" id="newsletter-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
 
 <script>
   const form = document.getElementById("newsletter-form") as HTMLFormElement;
   const note = document.getElementById("newsletter-note")!;
+  const button = form.querySelector("button") as HTMLButtonElement;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const body = new FormData(form);
-    const res = await fetch("/api/subscribe", { method: "POST", body });
-    const data = await res.json();
-    note.textContent = data.message ?? data.error;
-    if (res.ok) form.reset();
+    button.disabled = true;
+    button.textContent = "Sending...";
+    try {
+      const body = new FormData(form);
+      const res = await fetch("/api/subscribe", { method: "POST", body });
+      const data = await res.json();
+      note.textContent = data.message ?? data.error ?? "Something went wrong.";
+      if (res.ok) form.reset();
+    } catch {
+      note.textContent = "Something went wrong. Please try again.";
+    } finally {
+      button.disabled = false;
+      button.textContent = "Subscribe";
+    }
   });
 </script>
-  </div>
-</section>
 
 <style>
   .newsletter {
