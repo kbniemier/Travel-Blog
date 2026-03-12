@@ -8,51 +8,27 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    title: "The Last Train Through Patagonia",
-    publication: "Condé Nast Traveler",
+    title: "How to Travel the World: The Ultimate Guide for First-Time Global Explorers",
+    publication: "Tripways",
     description:
-      "A haunting journey through one of the world's most remote rail corridors, where Patagonian wind shakes the carriages and nothing arrives on schedule.",
-    url: "https://www.cntraveler.com/travel",
-    tag: "Rail Travel",
+      "Traveling the world is a dream many people hold, but turning that dream into reality takes more than wishing. A practical guide to making it happen.",
+    url: "https://tripways.com/how-to-travel-the-world",
+    tag: "Planning",
   },
   {
-    title: "Why Slow Travel Is the Only Way to Travel",
-    publication: "Vogue",
+    title: "Affordable Wellness Vacations",
+    publication: "The New York Times",
     description:
-      "A manifesto for spending weeks instead of days in a single place — and what you discover when you finally stop rushing.",
-    url: "https://www.vogue.com/travel",
-    tag: "Philosophy",
+      "Restorative travel doesn't have to break the bank. A guide to wellness getaways that prioritise rest, nature, and recovery without the luxury price tag.",
+    url: "https://www.nytimes.com/2026/03/10/travel/affordable-wellness-vacations.html",
+    tag: "Wellness",
   },
   {
-    title: "The Hidden Villages of the Albanian Riviera",
-    publication: "Lonely Planet",
-    description:
-      "Before the crowds arrived, there was Himara. A look at Europe's last undiscovered coastline and the communities keeping it that way.",
-    url: "https://www.lonelyplanet.com/articles",
-    tag: "Europe",
-  },
-  {
-    title: "Eating Your Way Through Okinawa",
-    publication: "Bon Appétit",
-    description:
-      "The Japanese island that thinks differently about food, time, and the art of living to one hundred.",
-    url: "https://www.bonappetit.com/travel",
-    tag: "Food & Culture",
-  },
-  {
-    title: "A Pilgrim's Notes on the Camino de Santiago",
+    title: "Travel News, Guides & Reviews",
     publication: "The Guardian",
     description:
-      "Eight hundred kilometres, one pair of boots, and more blisters than expected. What it actually feels like to walk across Spain.",
-    url: "https://www.theguardian.com/travel",
-    tag: "Pilgrimage",
-  },
-  {
-    title: "Crossing the Karakoram Highway",
-    publication: "National Geographic",
-    description:
-      "The world's highest paved international road connects Pakistan and China across some of the most dramatic terrain on the planet.",
-    url: "https://www.nationalgeographic.com/travel",
-    tag: "Adventure",
+      "The latest travel news and reviews on UK and world holidays, travel guides to global destinations, city breaks, hotels and restaurants.",
+    url: "https://www.theguardian.com/uk/travel",
+    tag: "News",
   },
 ];

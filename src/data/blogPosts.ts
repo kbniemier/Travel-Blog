@@ -11,6 +11,18 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Roadtripping Iceland: The Golden Circle and the Ring Road",
+    destination: "Iceland",
+    country: "Iceland",
+    date: "2026-03-10",
+    excerpt:
+      "Two routes, one extraordinary island — from Reykjavik's Viking history and Þingvellir's ancient parliament to the black sand beaches of Vík and the quiet of the Eastern Fjords.",
+    image:
+      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=800&q=80",
+    tag: "Europe",
+    slug: "/blog/iceland-road-trip-golden-circle-ring-road",
+  },
+  {
     title: "Italy in 7 Days: Ruins, Renaissance, & Lemons",
     destination: "Rome, Florence & Sorrento, Italy",
     country: "Italy",
